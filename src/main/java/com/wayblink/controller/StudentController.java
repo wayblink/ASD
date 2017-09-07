@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.Page;
 import com.wayblink.entity.Student;
-import com.wayblink.service.IStudentService;
+import com.wayblink.service.StudentService;
 
 @RestController
 public class StudentController {
 	
 	@Autowired
-	private IStudentService iStudentService;
+	private StudentService iStudentService;
 	
 	@RequestMapping("/getstu")
 	public HashMap<String, Object> getStudents(@RequestParam(value="parameter") String parameter,
