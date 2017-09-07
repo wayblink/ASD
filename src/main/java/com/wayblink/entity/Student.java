@@ -1,4 +1,4 @@
-package com.test.entity;
+package com.wayblink.entity;
 
 public class Student {
 

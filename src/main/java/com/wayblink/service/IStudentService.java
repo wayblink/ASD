@@ -1,7 +1,7 @@
-package com.test.service;
+package com.wayblink.service;
 
 import com.github.pagehelper.Page;
-import com.test.entity.Student;
+import com.wayblink.entity.Student;
 
 public interface IStudentService {
 	public Page<Student> getStudents(String parameter, int pageNum, int pageSize);

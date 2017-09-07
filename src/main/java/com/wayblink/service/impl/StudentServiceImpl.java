@@ -1,13 +1,13 @@
-package com.test.service.impl;
+package com.wayblink.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.test.Dao.StudentMapper;
-import com.test.entity.Student;
-import com.test.service.IStudentService;
+import com.wayblink.Dao.StudentMapper;
+import com.wayblink.entity.Student;
+import com.wayblink.service.IStudentService;
 
 @Service
 public class StudentServiceImpl implements IStudentService{

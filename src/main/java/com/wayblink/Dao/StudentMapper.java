@@ -1,8 +1,10 @@
-package com.test.Dao;
+package com.wayblink.Dao;
 
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
-import com.test.entity.Student;
+
+import com.wayblink.entity.Student;
 
 public interface StudentMapper {
 	public List<Student> getStudents(@Param("parameter")String parameter);
