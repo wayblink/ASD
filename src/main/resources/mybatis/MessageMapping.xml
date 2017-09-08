@@ -3,23 +3,24 @@
 <mapper namespace="com.wayblink.Dao.MessageMapper"> 
 	<resultMap id="NewMessageResultMap" type="com.wayblink.entity.Message">  
         <id column="id" property="id" jdbcType="INTEGER" />  
+        <id column="oid" property="oid" jdbcType="INTEGER" />  
         <result column="content" property="content" jdbcType="VARCHAR" />  
     </resultMap>  
     
     <select id="get" resultMap="NewMessageResultMap">
-    	select id,content from message where id=#{id} 
+    	select id,oid,content from message where oid=#{oid} 
     </select>
     
     <insert id="add">
-    	insert into message(content) values (#{content})
+    	insert into message(oid,content) values (#{oid},#{content})
     </insert>
     
     <update id="update">
-    	update message set content = #{1} where id = #{0}
+    	update message set content = #{content} where oid = #{oid}
     </update>
     
     <delete id="delete">
-    	delete from message where id = #{id}
+    	delete from message where oid = #{oid}
     </delete>
     
 </mapper>

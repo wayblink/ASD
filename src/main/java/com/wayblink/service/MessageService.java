@@ -11,19 +11,19 @@ public class MessageService {
     @Autowired
     private MessageMapper mapper;
     
-    public Message getMessage(int id) {
-        return mapper.get(id);
+    public Message getMessage(int oid) {
+        return mapper.get(oid);
     }
 
-    public void addMessage(String content) {
-        mapper.add(content);
+    public void addMessage(int oid, String content) {
+        mapper.add(oid, content);
     }
 
-    public void deleteMessage(int id) {
-        mapper.delete(id);
+    public void deleteMessage(int oid) {
+        mapper.delete(oid);
     }
 
-    public void updateMessage(int id, String content) {
-        mapper.update(id, content);
+    public void updateMessage(int oid, String content) {
+        mapper.update(oid, content);
     }
 }

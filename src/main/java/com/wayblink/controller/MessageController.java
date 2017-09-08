@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wayblink.entity.Message;
 import com.wayblink.service.MessageService;
+import com.wayblink.util.DateUtil;
 
 //@EnableAutoConfiguration  
 @RestController  
@@ -18,33 +21,43 @@ import com.wayblink.service.MessageService;
 public class MessageController {
     protected static Logger logger=LoggerFactory.getLogger(MessageController.class);  
     @Autowired
-    private MessageService messageService; 
+    private MessageService messageService;
+    @Autowired
+    private ObjectMapper mapper;
     
     @RequestMapping(value = "/insert/{content}")  
     String insert(@PathVariable String content) {  
         logger.info("Insert Message: {}",content); 
-        messageService.addMessage(content);
+        int oid = (int) (DateUtil.currentDate()%1000000);
+        messageService.addMessage(oid,content);
         return "Insert Message: "+content;  
     }
     
-    @RequestMapping(value = "/get/{id}")  
-    String get(@PathVariable int id) {  
-        logger.info("Get Message Where id is: {}",id); 
-        Message message = messageService.getMessage(id);
+    @RequestMapping(value = "/get/{oid}")  
+    String get(@PathVariable int oid) {  
+        logger.info("Get Message Where oid is: {}",oid); 
+        Message message = messageService.getMessage(oid);
         return message.getContent();  
     }
     
-    @RequestMapping(value = "/delete/{id}")  
-    String delete(@PathVariable int id) {  
-        logger.info("Delete Message Where id is: {}",id); 
-        messageService.deleteMessage(id);
-        return "Delete Message Where id is:" + id;  
+    @RequestMapping(value = "/get/json/{oid}")  
+    String getJson(@PathVariable int oid) throws JsonProcessingException {  
+        logger.info("Get Message Where oid is: {}",oid); 
+        Message message = messageService.getMessage(oid);
+        return mapper.writeValueAsString(message); 
+    }
+    
+    @RequestMapping(value = "/delete/{oid}")  
+    String delete(@PathVariable int oid) {  
+        logger.info("Delete Message Where oid is: {}",oid); 
+        messageService.deleteMessage(oid);
+        return "Delete Message Where oid is:" + oid;  
     }
     
     @RequestMapping(value = "/update", method = RequestMethod.POST) 
-    String update(@RequestParam(value="id")int id, @RequestParam(value="content")String content)
+    String update(@RequestParam(value="oid")int oid, @RequestParam(value="content")String content)
     {
-        messageService.updateMessage(id, content);
-        return "Update Message Set content = " + content + "Where id is:" + id;
+        messageService.updateMessage(oid, content);
+        return "Update Message Set content = " + content + "Where id is:" + oid;
     }
 }

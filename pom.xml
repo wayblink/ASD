@@ -3,10 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>spring-boot-Demo</artifactId>
+	<artifactId>asd</artifactId>
+	<groupId>com.wayblink</groupId>
 	<packaging>war</packaging>
-	<name>Spring Boot Web JSP Example</name>
-	<description>Spring Boot Web JSP Example</description>
+	<name>ASD questionnaire platform</name>
+	<description>ASD questionnaire platform</description>
 	<version>1.0</version>
 
 	<parent>

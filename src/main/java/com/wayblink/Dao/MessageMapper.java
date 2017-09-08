@@ -6,8 +6,8 @@ import com.wayblink.entity.Message;
 
 public interface MessageMapper {
 //    public List<Student> getStudents(@Param("parameter")String parameter);
-    public Message get(@Param("id")int id);
-    public void add(@Param("content")String content);
-    public void delete(@Param("id")int id);
-    public void update(int id, String content);
+    public Message get(@Param("oid")int oid);
+    public void add(@Param("oid")int oid, @Param("content")String content);
+    public void delete(@Param("oid")int oid);
+    public void update(int oid, String content);
 }
