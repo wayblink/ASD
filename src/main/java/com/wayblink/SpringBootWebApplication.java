@@ -22,10 +22,10 @@ public class SpringBootWebApplication extends SpringBootServletInitializer {
 
     protected static Logger logger=LoggerFactory.getLogger(SpringBootWebApplication.class); 
 	
-//    @Override
-//	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-//		return application.sources(SpringBootWebApplication.class);
-//	}
+    @Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(SpringBootWebApplication.class);
+	}
 	  
     @Bean  
     @ConfigurationProperties(prefix="spring.datasource")  
