@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,7 +24,7 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
     @Autowired
-    private ObjectMapper mapper;
+    private ObjectMapper mapper; 
     
     @RequestMapping(value = "/insert/{content}")  
     String insert(@PathVariable String content) {  
@@ -60,4 +61,16 @@ public class MessageController {
         messageService.updateMessage(oid, content);
         return "Update Message Set content = " + content + "Where id is:" + oid;
     }
+    
+    @RequestMapping(value = "/request",produces="application/json;charset=UTF-8",method=RequestMethod.GET) 
+    String getRequest(@RequestBody String data)
+    {
+//        String input = request.getParameter("data");
+//        System.out.println(request.getQueryString());
+//        logger.info("Insert Message: {}",input); 
+        int oid = (int) (DateUtil.currentDate()%1000000);
+        messageService.addMessage(oid,data);
+        return "Insert Message: "+data;  
+    }
+    
 }
