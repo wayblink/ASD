@@ -1,10 +1,11 @@
 package com.wayblink.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wayblink.entity.Message;
 import com.wayblink.service.MessageService;
 import com.wayblink.util.DateUtil;
+import com.wayblink.util.DecodeUtil;
 
 //@EnableAutoConfiguration  
 @RestController  
@@ -62,15 +64,14 @@ public class MessageController {
         return "Update Message Set content = " + content + "Where id is:" + oid;
     }
     
-    @RequestMapping(value = "/request",produces="application/json;charset=UTF-8",method=RequestMethod.GET) 
-    String getRequest(@RequestBody String data)
-    {
-//        String input = request.getParameter("data");
-//        System.out.println(request.getQueryString());
-//        logger.info("Insert Message: {}",input); 
+    @RequestMapping(value = "/insert/json",produces="application/json;charset=UTF-8",method=RequestMethod.GET) 
+    String getRequest(HttpServletRequest request)
+    {     
+        String data = DecodeUtil.filter(request.getQueryString());
+        logger.info("Insert Message: {}", data); 
         int oid = (int) (DateUtil.currentDate()%1000000);
         messageService.addMessage(oid,data);
-        return "Insert Message: "+data;  
+        return Integer.toString(oid);  
     }
     
 }
