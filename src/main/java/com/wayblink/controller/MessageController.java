@@ -64,7 +64,7 @@ public class MessageController {
         return "Update Message Set content = " + content + "Where id is:" + oid;
     }
     
-    @RequestMapping(value = "/request",produces="application/json;charset=UTF-8",method=RequestMethod.GET) 
+    @RequestMapping(value = "/request",produces="application/json;charset=UTF-8") 
     String getRequest(HttpServletRequest request)
     {     
         String data = DecodeUtil.filter(request.getQueryString());
