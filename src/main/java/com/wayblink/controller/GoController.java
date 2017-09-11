@@ -12,10 +12,6 @@ public class GoController {
         return "/go";
     }
     
-    @RequestMapping(value = "/iftc")
-    public String iftc() {
-        return "/iftc";
-    }
 //    @RequestMapping("/go")
 //    public ModelAndView go() throws Exception {
 //     // TODO Auto-generated method stub
